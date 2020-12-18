@@ -29,7 +29,7 @@ for(let i = 0; i < 2; i++){
 if(personalMovieDB.count < 10){
     console.log('you watched to many movies');
 }else if(personalMovieDB.count >10 && personalMovieDB.count < 30){
-    console.log('you watche anought conunt of movies');
+    console.log('you watched anought conunt of movies');
 }else{
     console.log('You watched so many movies!');
 }
