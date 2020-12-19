@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 let moviesCount = +prompt('How many movies did you see last time?');
 
