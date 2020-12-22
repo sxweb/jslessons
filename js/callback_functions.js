@@ -43,3 +43,12 @@ function writeSecondMessage(){
 }
 
 writeMessages(someString, writeSecondMessage);
+
+function someCallbackFunc(callback){
+    console.log('some text for training');
+    callback();
+}
+
+someCallbackFunc(function(){
+    console.log('some actions in callback function');
+});

@@ -36,3 +36,12 @@ for (let key in options){
 
 console.log(Object.keys(options).length);
 
+const simpleObject = {
+    name: 'simpleObject',
+    simpleMethod: function(){
+        console.log('some simple method for training');
+    }
+};
+
+console.log(Object.keys(simpleObject).length);
+
