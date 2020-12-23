@@ -1,3 +1,5 @@
+'use strict';
+
 const options = {
     name: 'test',
     width: 1024,
@@ -45,3 +47,27 @@ const simpleObject = {
 
 console.log(Object.keys(simpleObject).length);
 
+
+const Person = {
+    firstName: 'Yuriy',
+    secondName: 'Vozhagov',
+    age: 35,
+    hazWife: true,
+    children: {
+        son: 'Maxim'
+    }
+}
+
+function printMyObject(obj){
+    for(let key in obj){
+        if(typeof(obj[key]) == 'object'){
+            for(let innerKey in obj[key]){
+                console.log(`The element name is: ${obj[innerKey]}, and his value is ${obj[key][innerKey]}`);
+            }
+        }else{
+            console.log(`The element name is: ${key}, and his value is ${obj[key]}`);
+        }
+    }
+}
+
+printMyObject(Person);
