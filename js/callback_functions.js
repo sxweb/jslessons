@@ -1,3 +1,5 @@
+'use strict';
+
 function first(){
     setTimeout(function(){
         console.log('some first message');
