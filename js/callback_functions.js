@@ -43,3 +43,4 @@ function writeSecondMessage(){
 }
 
 writeMessages(someString, writeSecondMessage);
+
