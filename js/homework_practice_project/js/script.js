@@ -29,11 +29,61 @@ document.querySelectorAll('.promo__adv *').forEach((item) =>{
 });
 document.querySelector('.promo__genre').textContent = 'Драма';
 document.querySelector('.promo__bg').style.background = 'url(img/bg.jpg) center center/cover no-repeat';
+renderMoviesList(movieDB.movies.sort());
 
-const moviesList = document.querySelectorAll('.promo__interactive-list .promo__interactive-item');
-const moviesBase = movieDB.movies.sort();
 
-moviesList.forEach((item, i) =>{
-    item.innerHTML = `${i + 1}. ${moviesBase[i]}<div class="delete"></div>`;
-});
+
+function renderMoviesList(movies) {
+    const moviesList = document.querySelector('.promo__interactive-list');
+    moviesList.innerHTML = '';
+    for(let i = 0; i < movies.length; i++){
+        let movie = movies[i];
+        if(movie.length > 12){
+            movie = movie.slice(0,12);
+            movie +='...';
+        }
+        moviesList.innerHTML += `<li class="promo__interactive-item">${i + 1}. ${movie}<div class="delete"></div></li>`;
+    }
+    addRemoveFunctions();
+}
+
+const addFilmButton = document.querySelector('.promo__interactive .add button');
+addFilmButton.addEventListener('click', addFilm);
+
+function addFilm(e){
+    e.preventDefault();
+    let value = document.querySelector('.promo__interactive .add input').value;
+    if(value.length > 0){
+        movieDB.movies.push(value);
+    }
+    renderMoviesList(movieDB.movies.sort());
+    const isFavorite = document.querySelector('.add input[type="checkbox" i]').checked;
+    if(isFavorite){
+        console.log(`Added favourite movie called ${value}`);
+    }
+
+}
+
+function addRemoveFunctions() {
+    let deleteButtons = document.querySelectorAll('.promo__interactive-list .delete');
+    deleteButtons.forEach((item) => {
+        item.addEventListener('click', deleteMovie);
+    });
+}
+
+addRemoveFunctions();
+
+function deleteMovie(e){
+    e.preventDefault();
+    console.log(e.target.parentElement.textContent);
+    const list = document.querySelectorAll('.promo__interactive-item');
+    list.forEach((item, i) =>{
+        if(item.textContent == e.target.parentElement.textContent){
+            movieDB.movies.splice(i,1);
+        }
+    });
+    renderMoviesList(movieDB.movies.sort());
+}
+
+
 
