@@ -17,10 +17,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2caa2a37-b747-4029-9243-821af3d8e32a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/js/classListMethods.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lessons/timeouts/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lessons/timeouts/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lessons/timeouts/timeouts.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +34,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
+        <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -60,9 +62,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -75,6 +79,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Yuri\Desktop\OSPanel\domains\jslessons\lessons\timeouts" />
       <recent name="C:\Users\Yuri\Desktop\OSPanel\domains\jslessons\js" />
     </key>
   </component>
@@ -112,7 +117,8 @@
       <workItem from="1610170206448" duration="6688000" />
       <workItem from="1610178427197" duration="2799000" />
       <workItem from="1610256020901" duration="1750000" />
-      <workItem from="1610375096061" duration="4399000" />
+      <workItem from="1610375096061" duration="5618000" />
+      <workItem from="1610774231123" duration="3583000" />
     </task>
     <servers />
   </component>
