@@ -30,3 +30,37 @@ document.addEventListener('click', (e) =>{
 
 hideTabs(tabsContent);
 showTab();
+
+//timer
+const deadLine = '2021-05-01';
+console.log(new Date());
+
+function displayTimer(days, hours, minutes, seconds){
+    document.querySelector('#days').innerHTML = days;
+    document.querySelector('#hours').innerHTML = hours;
+    document.querySelector('#minutes').innerHTML = minutes;
+    document.querySelector('#seconds').innerHTML = seconds;
+}
+
+function getRemainingTime(deadline){
+    return deadLine - (new Date());
+}
+
+function calculateTimerValues(miliseconds){
+    const days = Math.round(miliseconds / (60*60*24)) ;
+    const hours = Math.round((miliseconds % (60*60*24))/(60*60));
+    const minutes = Math.round((miliseconds % (60*60*24))%(60*60)/60);
+    const seconds = (miliseconds % (60*60*24))%(60*60);
+    return {
+        days: days,
+        hours: hours,
+        minutes: minutes,
+        seconds: seconds
+    };
+}
+
+setInterval(()=>{
+    const values = calculateTimerValues(getRemainingTime(deadLine));
+    displayTimer(values.days, values.hours, values.minutes, values.seconds);
+},1000);
+
