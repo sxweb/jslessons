@@ -1,4 +1,6 @@
 'use strict';
+
+//Tabs
 const tabsContent = document.querySelectorAll('.tabcontainer .tabcontent');
 const tabsLinks = document.querySelectorAll('.tabheader__items .tabheader__item');
 const linksContainer = document.querySelector('.tabheader__items');
@@ -33,7 +35,7 @@ showTab();
 
 //timer
 const deadLine = '2021-05-01';
-console.log(new Date());
+
 
 function displayTimer(days, hours, minutes, seconds){
     document.querySelector('#days').innerHTML = days;
@@ -43,14 +45,21 @@ function displayTimer(days, hours, minutes, seconds){
 }
 
 function getRemainingTime(deadline){
-    return deadLine - (new Date());
+    return Date.parse(deadLine) - Date.parse(new Date());
+}
+
+function addZero(target){
+    if(target < 10){
+        target = `0${target}`;
+    }
+    return target;
 }
 
 function calculateTimerValues(miliseconds){
-    const days = Math.round(miliseconds / (60*60*24)) ;
-    const hours = Math.round((miliseconds % (60*60*24))/(60*60));
-    const minutes = Math.round((miliseconds % (60*60*24))%(60*60)/60);
-    const seconds = (miliseconds % (60*60*24))%(60*60);
+    const days = addZero(Math.floor(miliseconds / (1000*60*60*24))) ;
+    const hours = addZero(Math.floor((miliseconds % (1000*60*60*24))/(1000*60*60)));
+    const minutes = addZero(Math.floor((miliseconds % (1000*60*60*24))%(1000*60*60)/(1000*60)));
+    const seconds = addZero(Math.floor((miliseconds % (1000*60*60*24))%(1000*60*60)%(1000*60)/1000));
     return {
         days: days,
         hours: hours,
@@ -59,8 +68,13 @@ function calculateTimerValues(miliseconds){
     };
 }
 
-setInterval(()=>{
-    const values = calculateTimerValues(getRemainingTime(deadLine));
-    displayTimer(values.days, values.hours, values.minutes, values.seconds);
-},1000);
+function startTimer(){
+    setInterval(()=>{
+        const values = calculateTimerValues(getRemainingTime(deadLine));
+        displayTimer(values.days, values.hours, values.minutes, values.seconds);
+    },1000);
+}
 
+const values = calculateTimerValues(getRemainingTime(deadLine));
+displayTimer(values.days, values.hours, values.minutes, values.seconds);
+startTimer();
