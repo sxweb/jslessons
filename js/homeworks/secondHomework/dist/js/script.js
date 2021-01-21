@@ -34,7 +34,8 @@ hideTabs(tabsContent);
 showTab();
 
 //timer
-const deadLine = '2021-05-01';
+const deadLine = '2021-01-21T10:18:22';
+console.log(new Date());
 
 
 function displayTimer(days, hours, minutes, seconds){
@@ -69,12 +70,20 @@ function calculateTimerValues(miliseconds){
 }
 
 function startTimer(){
-    setInterval(()=>{
-        const values = calculateTimerValues(getRemainingTime(deadLine));
-        displayTimer(values.days, values.hours, values.minutes, values.seconds);
+    const intervalId = setInterval(()=>{
+        if(getRemainingTime(deadLine) >= 0){
+            const values = calculateTimerValues(getRemainingTime(deadLine));
+            displayTimer(values.days, values.hours, values.minutes, values.seconds);
+        }else{
+            clearInterval(intervalId);
+        }
     },1000);
 }
+if(getRemainingTime(deadLine) > 0){
+    const values = calculateTimerValues(getRemainingTime(deadLine));
+    displayTimer(values.days, values.hours, values.minutes, values.seconds);
+    startTimer();
+}else{
+    displayTimer('00','00','00','00');
+}
 
-const values = calculateTimerValues(getRemainingTime(deadLine));
-displayTimer(values.days, values.hours, values.minutes, values.seconds);
-startTimer();
