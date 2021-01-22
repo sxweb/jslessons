@@ -87,3 +87,19 @@ if(getRemainingTime(deadLine) > 0){
     displayTimer('00','00','00','00');
 }
 
+//modal
+
+const contactsButtons = document.querySelectorAll('[data-contacts]');
+const modal = document.querySelector('[data-modal]');
+const closeModalButton = document.querySelector('[data-modalClose]');
+
+closeModalButton.addEventListener('click', ()=>{
+    modal.style.display = 'none';
+});
+
+contactsButtons.forEach((item)=>{
+    item.addEventListener('click', ()=>{
+        modal.style.display = 'block';
+    });
+});
+
