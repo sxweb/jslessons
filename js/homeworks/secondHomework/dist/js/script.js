@@ -114,10 +114,22 @@ function  showModal(){
     modal.classList.add('show');
     modal.classList.remove('hide');
     document.body.style.overflow = 'hidden';
+    clearInterval(modalTimerId);
 }
 
 function hideModal(){
     modal.classList.add('hide');
     modal.classList.remove('show');
     document.body.style.overflow = '';
+}
+
+const modalTimerId = setTimeout(showModal, 5000);
+
+window.addEventListener('scroll', showModalByScroll);
+
+function showModalByScroll(){
+    if(window.pageYOffset +document.documentElement.clientHeight >=  document.documentElement.scrollHeight){
+        showModal();
+        window.removeEventListener('scroll', showModalByScroll);
+    }
 }
