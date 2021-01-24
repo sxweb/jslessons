@@ -93,13 +93,31 @@ const contactsButtons = document.querySelectorAll('[data-contacts]');
 const modal = document.querySelector('[data-modal]');
 const closeModalButton = document.querySelector('[data-modalClose]');
 
+
 closeModalButton.addEventListener('click', ()=>{
-    modal.style.display = 'none';
+    hideModal();
+});
+
+modal.addEventListener('click', (e)=>{
+    if(e.target == modal){
+        hideModal();
+    }
 });
 
 contactsButtons.forEach((item)=>{
     item.addEventListener('click', ()=>{
-        modal.style.display = 'block';
+        showModal();
     });
 });
 
+function  showModal(){
+    modal.classList.add('show');
+    modal.classList.remove('hide');
+    document.body.style.overflow = 'hidden';
+}
+
+function hideModal(){
+    modal.classList.add('hide');
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+}
