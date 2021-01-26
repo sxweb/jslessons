@@ -29,3 +29,14 @@ function User(name, id){
 
 const yuriy = new User('Yuriy', 45);
 yuriy.printThis();
+
+//event will return event.target only if it is't arrow-function, arrow-function
+//will return window, because it hase a parent context
+
+const btn = document.querySelector('button');
+btn.addEventListener('click', function(){
+    console.log(this);
+});
+btn.addEventListener('click', ()=>{
+    console.log(this);
+});
