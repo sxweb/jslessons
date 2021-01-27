@@ -34,9 +34,9 @@ yuriy.printThis();
 //will return window, because it hase a parent context
 
 const btn = document.querySelector('button');
-btn.addEventListener('click', function(){
+/*btn.addEventListener('click', function(){
     console.log(this);
-});
+});*/
 btn.addEventListener('click', ()=>{
-    console.log(this);
+    //console.log(this);
 });
