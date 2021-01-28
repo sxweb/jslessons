@@ -133,3 +133,67 @@ function showModalByScroll(){
         window.removeEventListener('scroll', showModalByScroll);
     }
 }
+
+//cards using classes
+
+class Card{
+    constructor(image, subTitle, description, price){
+        this.image = image;
+        this.subTitle = subTitle;
+        this.description = description;
+        this.price = price;
+    }
+
+    showCard(){
+        const divContainer = document.createElement('div');
+        divContainer.classList.add('menu__item');
+        divContainer.innerHTML = `<img src="${this.image}" alt="vegy">`;
+        divContainer.innerHTML += `<h3 class="menu__item-subtitle">${this.subTitle}</h3>`;
+        divContainer.innerHTML += `<div class="menu__item-descr">${this.description}</div>`;
+        divContainer.innerHTML += `<div class="menu__item-divider"></div>`;
+        divContainer.innerHTML += `<div class="menu__item-price">
+        <div class="menu__item-cost">Цена:</div>
+        <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
+    </div>`;
+        return divContainer;
+    }
+}
+
+const cardsValues = [
+    {
+        image: 'http://127.0.0.1:5500/js/homeworks/secondHomework/dist/img/tabs/vegy.jpg',
+        subTitle: 'Меню "Фитнес"',
+        description: 'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
+        price: '229'
+    },
+    {
+        image: 'http://127.0.0.1:5500/js/homeworks/secondHomework/dist/img/tabs/elite.jpg',
+        subTitle: 'Меню “Премиум”',
+        description: 'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
+        price: '550'
+    },
+    {
+        image: 'http://127.0.0.1:5500/js/homeworks/secondHomework/dist/img/tabs/post.jpg',
+        subTitle: 'Меню "Постное"',
+        description: 'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
+        price: '430'
+    }
+];
+
+const menuContainer = document.querySelector('.menu__field .container');
+
+function createCards(){
+    const cards = [];
+    for(let card of cardsValues){
+        console.log(card.image);
+        cards.push(new Card(card.image, card.subTitle, card.description, card.price));
+    }
+    return cards;
+}
+
+const cards = createCards();
+menuContainer.innerHTML = '';
+cards.forEach((card) => {
+    menuContainer.append(card.showCard());
+    console.log(card.showCard());
+});
