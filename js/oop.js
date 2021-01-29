@@ -10,7 +10,7 @@ const soldier = {
 
 const john = {
     health: 100
-}
+};
 //deprecated approach
 /*john.__proto__ = soldier;
 john.sayHello();*/
