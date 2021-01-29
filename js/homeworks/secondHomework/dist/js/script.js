@@ -137,16 +137,24 @@ function showModalByScroll(){
 //cards using classes
 
 class Card{
-    constructor(image, subTitle, description, price){
+    constructor(image, subTitle, description, price, ...classes){
         this.image = image;
         this.subTitle = subTitle;
         this.description = description;
         this.price = price;
+        this.classes = classes;
     }
 
     showCard(){
         const divContainer = document.createElement('div');
-        divContainer.classList.add('menu__item');
+        if(this.classes.length >= 0){
+          classes.forEach((className) =>{
+            divContainer.classList.add(className);
+          })
+        }else{
+          divContainer.classList.add('menu__item');
+        }
+        
         divContainer.innerHTML = `<img src="${this.image}" alt="vegy">`;
         divContainer.innerHTML += `<h3 class="menu__item-subtitle">${this.subTitle}</h3>`;
         divContainer.innerHTML += `<div class="menu__item-descr">${this.description}</div>`;
