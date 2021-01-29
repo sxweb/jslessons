@@ -123,7 +123,7 @@ function hideModal(){
     document.body.style.overflow = '';
 }
 
-const modalTimerId = setTimeout(showModal, 5000);
+//const modalTimerId = setTimeout(showModal, 5000);
 
 window.addEventListener('scroll', showModalByScroll);
 
@@ -137,20 +137,21 @@ function showModalByScroll(){
 //cards using classes
 
 class Card{
-    constructor(image, subTitle, description, price, ...classes){
+    constructor(image, subTitle, description, price, parent, ...classes){
         this.image = image;
         this.subTitle = subTitle;
         this.description = description;
         this.price = price;
+        this.parent = document.querySelector(`${parent}`);
         this.classes = classes;
     }
 
     showCard(){
         const divContainer = document.createElement('div');
         if(this.classes.length >= 0){
-          classes.forEach((className) =>{
+          this.classes.forEach((className) =>{
             divContainer.classList.add(className);
-          })
+          });
         }else{
           divContainer.classList.add('menu__item');
         }
@@ -163,7 +164,7 @@ class Card{
         <div class="menu__item-cost">Цена:</div>
         <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
     </div>`;
-        return divContainer;
+        this.parent.append(divContainer);
     }
 }
 
@@ -188,20 +189,10 @@ const cardsValues = [
     }
 ];
 
-const menuContainer = document.querySelector('.menu__field .container');
-
 function createCards(){
-    const cards = [];
     for(let card of cardsValues){
-        console.log(card.image);
-        cards.push(new Card(card.image, card.subTitle, card.description, card.price));
+        new Card(card.image, card.subTitle, card.description, card.price, '.menu__field .container', 'menu__item', 'big').showCard();
     }
-    return cards;
 }
 
-const cards = createCards();
-menuContainer.innerHTML = '';
-cards.forEach((card) => {
-    menuContainer.append(card.showCard());
-    console.log(card.showCard());
-});
+createCards();
