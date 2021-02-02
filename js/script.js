@@ -213,7 +213,13 @@ function addFormEvent(form){
         const data = new FormData(form);
         const request = new XMLHttpRequest();
         request.open('POST', 'server.php');
-        request.send(data);
+        request.setRequestHeader('Content-type', 'application/json');
+        const object = {};
+        data.forEach((value, key)=>{
+           object[key]  = value;
+        });
+        const obj = JSON.stringify(object);
+        request.send(obj);
         
         
         const message = document.createElement('div');
@@ -224,6 +230,9 @@ function addFormEvent(form){
         request.addEventListener('load', ()=>{
             if(request.status === 200){
                 message.innerText = status.sent;
+                console.log(request.response);
+                form.reset();
+                hideModal();
             }else{
                 message.innerText = status.error;
             }
