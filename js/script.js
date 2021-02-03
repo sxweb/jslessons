@@ -95,7 +95,7 @@ const modal = document.querySelector('[data-modal]');
 
 
 modal.addEventListener('click', (e)=>{
-    if(e.target == modal || e.target.getAttribute('[data-modalClose=""]')){
+    if(e.target == modal || e.target.getAttribute('data-modalClose') == ''){
         hideModal();
     }
 });
@@ -105,7 +105,6 @@ contactsButtons.forEach((item)=>{
         showModal();
     });
 });
-
 function  showModal(){
     modal.classList.add('show');
     modal.classList.remove('hide');
@@ -119,7 +118,7 @@ function hideModal(){
     document.body.style.overflow = '';
 }
 
-//const modalTimerId = setTimeout(showModal, 5000);
+const modalTimerId = setTimeout(showModal, 50000);
 
 window.addEventListener('scroll', showModalByScroll);
 
@@ -197,7 +196,7 @@ createCards();
 
 const forms = document.querySelectorAll('form');
 const status = {
-    loading: 'loading...',
+    loading: 'img/forms/spinner.svg',
     sent: 'You sent a letter',
     error: 'Some error'
 }
@@ -219,9 +218,12 @@ function addFormEvent(form){
         
         
         const message = document.createElement('img');
-        message.src = '/img/forms/spinner.svg';
+        message.src = status.loading;
         message.style.margin = '0 auto';
         message.style.display = 'block';
+        message.style.height = '50px';
+        message.style.width = '50px';
+        message.style.color = '#000';
         form.append(message);
 
         request.addEventListener('load', ()=>{
