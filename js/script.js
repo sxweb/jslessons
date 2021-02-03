@@ -91,15 +91,11 @@ if(getRemainingTime(deadLine) > 0){
 
 const contactsButtons = document.querySelectorAll('[data-contacts]');
 const modal = document.querySelector('[data-modal]');
-const closeModalButton = document.querySelector('[data-modalClose]');
 
 
-closeModalButton.addEventListener('click', ()=>{
-    hideModal();
-});
 
 modal.addEventListener('click', (e)=>{
-    if(e.target == modal){
+    if(e.target == modal || e.target.getAttribute('[data-modalClose=""]')){
         hideModal();
     }
 });
@@ -222,19 +218,18 @@ function addFormEvent(form){
         request.send(obj);
         
         
-        const message = document.createElement('div');
-        message.classList.add('system-message');
-        message.innerText = status.loading;
+        const message = document.createElement('img');
+        message.src = '/img/forms/spinner.svg';
+        message.style.margin = '0 auto';
+        message.style.display = 'block';
         form.append(message);
 
         request.addEventListener('load', ()=>{
             if(request.status === 200){
-                message.innerText = status.sent;
-                console.log(request.response);
+                showNotificationModal(status.sent);
                 form.reset();
-                hideModal();
             }else{
-                message.innerText = status.error;
+                showNotificationModal(status.error);
             }
 
             setTimeout(()=>{
@@ -247,3 +242,26 @@ function addFormEvent(form){
 forms.forEach((form)=>{
     addFormEvent(form);
 });
+
+function showNotificationModal(message){
+    hideModal();
+    const oldModal = document.querySelector('.modal__dialog');
+    oldModal.classList.add('hide');
+    const newModal = document.createElement('div');
+    newModal.classList.add('modal__dialog');
+    newModal.innerHTML = `
+        <div class="modal__content">
+            <div data-modalclose="" class="modal__close">×</div>
+            <div class="modal__title">${message}</div>
+            
+        </div>
+    `;
+    document.querySelector('.modal').append(newModal);
+    showModal();
+    setTimeout(()=>{
+        newModal.remove();
+        oldModal.classList.remove('hide');
+        hideModal();
+    }, 4000);
+
+}
