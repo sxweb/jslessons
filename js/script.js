@@ -224,7 +224,7 @@ function addFormEvent(form){
         message.style.height = '50px';
         message.style.width = '50px';
         message.style.color = '#000';
-        form.append(message);
+        form.insertAdjacentElement('afterend', message);
 
         request.addEventListener('load', ()=>{
             if(request.status === 200){

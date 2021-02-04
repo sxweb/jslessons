@@ -17,7 +17,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2caa2a37-b747-4029-9243-821af3d8e32a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/img/forms/810.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lessons/promises/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lessons/promises/promises.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
     </list>
@@ -32,9 +34,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -55,11 +57,15 @@
     </file-type-list>
   </component>
   <component name="ProjectId" id="1lov8tj1862qOqUJ1l5feG623h5" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
@@ -132,7 +138,8 @@
       <workItem from="1612071627858" duration="3369000" />
       <workItem from="1612276179994" duration="2818000" />
       <workItem from="1612361995261" duration="4684000" />
-      <workItem from="1612372247707" duration="1878000" />
+      <workItem from="1612372247707" duration="2060000" />
+      <workItem from="1612410595722" duration="7756000" />
     </task>
     <servers />
   </component>
@@ -162,5 +169,8 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
