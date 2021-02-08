@@ -26,7 +26,7 @@ const req = new Promise(function (resolve, reject){
             name: 'something',
             count: 45,
             price: 4532
-        }
+        };
         resolve(product);
 
     }, 2000);
@@ -43,4 +43,4 @@ req.then((product)=>{
     return data;
 }).then((data)=>{
     console.log(data);
-})
+});

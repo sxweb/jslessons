@@ -17,11 +17,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2caa2a37-b747-4029-9243-821af3d8e32a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/lessons/promises/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lessons/promises/promises.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lessons/promises/promisesPractice.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.jshintrc" beforeDir="false" afterPath="$PROJECT_DIR$/.jshintrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/promises/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/promises/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lessons/promises/promises.js" beforeDir="false" afterPath="$PROJECT_DIR$/lessons/promises/promises.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,8 +35,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -139,7 +139,8 @@
       <workItem from="1612276179994" duration="2818000" />
       <workItem from="1612361995261" duration="4684000" />
       <workItem from="1612372247707" duration="2060000" />
-      <workItem from="1612410595722" duration="7756000" />
+      <workItem from="1612410595722" duration="7919000" />
+      <workItem from="1612794198082" duration="4223000" />
     </task>
     <servers />
   </component>
