@@ -199,24 +199,13 @@ const status = {
     loading: 'img/forms/spinner.svg',
     sent: 'You sent a letter',
     error: 'Some error'
-}
+};
 
 
 function addFormEvent(form){
     form.addEventListener('submit', (e)=>{
         e.preventDefault();
         const data = new FormData(form);
-        const request = new XMLHttpRequest();
-        request.open('POST', 'server.php');
-        request.setRequestHeader('Content-type', 'application/json');
-        const object = {};
-        data.forEach((value, key)=>{
-           object[key]  = value;
-        });
-        const obj = JSON.stringify(object);
-        request.send(obj);
-        
-        
         const message = document.createElement('img');
         message.src = status.loading;
         message.style.margin = '0 auto';
@@ -225,18 +214,25 @@ function addFormEvent(form){
         message.style.width = '50px';
         message.style.color = '#000';
         form.insertAdjacentElement('afterend', message);
-
-        request.addEventListener('load', ()=>{
-            if(request.status === 200){
-                showNotificationModal(status.sent);
-                form.reset();
-            }else{
-                showNotificationModal(status.error);
-            }
-
-            setTimeout(()=>{
-                message.remove();
-            }, 3000);
+        const obj = {};
+        data.forEach((value, key)=>{
+            obj[key] = value;
+        });
+        fetch('server.php', {
+           method: 'POST',
+           headers:{
+               'Content-type': 'application/json'
+           },
+            body: JSON.stringify(obj)
+        }).then(data => data.text())
+            .then(()=>{
+            showNotificationModal(status.sent);
+            message.remove();
+            console.log(data);
+        }).catch(()=>{
+            showNotificationModal(status.error);
+        }).finally(()=>{
+            form.reset();
         });
     });
 }
