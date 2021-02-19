@@ -184,13 +184,24 @@ const cardsValues = [
     }
 ];
 
-function createCards(){
-    for(let card of cardsValues){
-        new Card(card.image, card.subTitle, card.description, card.price, '.menu__field .container', 'menu__item', 'big').showCard();
-    }
-}
+const getData = async (url) =>{
+    const res = await fetch(url);
 
-createCards();
+    if(!res.ok){
+        throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+    }
+
+    return await res.json();
+};
+
+getData('http://localhost:3000/menu')
+    .then(data =>{
+        data.forEach(({img, title, descr, price}) => {
+            price = price*74;
+            new Card(img, title, descr, price, '.menu__field .container', 'menu__item').showCard();
+        });
+    });
+
 
 //forms
 
@@ -202,7 +213,20 @@ const status = {
 };
 
 
-function addFormEvent(form){
+
+const  postData = async (url, data)=>{
+    const result = await fetch(url, {
+        method: 'POST',
+        headers:{
+            'Content-type': 'application/json'
+        },
+        body: data
+    });
+
+    return await result.json();
+};
+
+function bindPostData(form){
     form.addEventListener('submit', (e)=>{
         e.preventDefault();
         const data = new FormData(form);
@@ -218,14 +242,9 @@ function addFormEvent(form){
         data.forEach((value, key)=>{
             obj[key] = value;
         });
-        fetch('server.php', {
-           method: 'POST',
-           headers:{
-               'Content-type': 'application/json'
-           },
-            body: JSON.stringify(obj)
-        }).then(data => data.text())
-            .then(()=>{
+        postData(' http://localhost:3000/requests', JSON.stringify(obj))
+
+            .then((data)=>{
             showNotificationModal(status.sent);
             message.remove();
             console.log(data);
@@ -238,7 +257,7 @@ function addFormEvent(form){
 }
 
 forms.forEach((form)=>{
-    addFormEvent(form);
+    bindPostData(form);
 });
 
 function showNotificationModal(message){

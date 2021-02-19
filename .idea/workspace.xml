@@ -17,9 +17,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2caa2a37-b747-4029-9243-821af3d8e32a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/db.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.jshintrc" beforeDir="false" afterPath="$PROJECT_DIR$/.jshintrc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +72,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/img/forms" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -83,6 +86,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Yuri\Desktop\OSPanel\domains\jslessons" />
       <recent name="C:\Users\Yuri\Desktop\OSPanel\domains\jslessons\img\forms" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -141,7 +145,13 @@
       <workItem from="1612410595722" duration="7919000" />
       <workItem from="1612794198082" duration="5061000" />
       <workItem from="1612880376987" duration="2395000" />
-      <workItem from="1612884763454" duration="200000" />
+      <workItem from="1612884763454" duration="410000" />
+      <workItem from="1612890763460" duration="9000" />
+      <workItem from="1613137414734" duration="441000" />
+      <workItem from="1613658783929" duration="321000" />
+      <workItem from="1613659253262" duration="816000" />
+      <workItem from="1613661817660" duration="4265000" />
+      <workItem from="1613739929823" duration="3459000" />
     </task>
     <servers />
   </component>

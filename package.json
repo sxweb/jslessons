@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/sxweb/jslessons/issues"
   },
-  "homepage": "https://github.com/sxweb/jslessons#readme"
+  "homepage": "https://github.com/sxweb/jslessons#readme",
+  "devDependencies": {
+    "json-server": "^0.16.3"
+  }
 }
