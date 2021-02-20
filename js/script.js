@@ -194,9 +194,9 @@ const getData = async (url) =>{
     return await res.json();
 };
 
-getData('http://localhost:3000/menu')
-    .then(data =>{
-        data.forEach(({img, title, descr, price}) => {
+axios.get('http://localhost:3000/menu')
+    .then(result =>{
+        result.data.forEach(({img, title, descr, price}) => {
             price = price*74;
             new Card(img, title, descr, price, '.menu__field .container', 'menu__item').showCard();
         });
@@ -281,4 +281,53 @@ function showNotificationModal(message){
         hideModal();
     }, 4000);
 
+}
+//slider
+let slidesCount = 0;
+let current = 0;
+let slides = [];
+const slidesCountText = document.querySelector('.offer__slider-counter #total');
+const currentSlideText = document.querySelector('.offer__slider-counter #current');
+const sliderContainer = document.querySelector('.offer__slide');
+axios.get('http://localhost:3000/slider')
+    .then(result => {
+        showSlide(sliderContainer, result.data[0].image);
+        slidesCount = result.data.length;
+        slidesCountText.innerText = slidesCount;
+        updateSliderCounter();
+        slides = result.data;
+    });
+
+const sliderButtons = document.querySelector('.offer__slider-counter');
+sliderButtons.addEventListener('click', (e)=>{
+    if(e.target.classList.contains('offer__slider-next')){
+        incrementSliderCounter();
+    }else if(e.target.classList.contains('offer__slider-prev')){
+        decrementSliderCounter();
+    }
+    showSlide(sliderContainer, slides[current].image);
+    updateSliderCounter();
+});
+function showSlide(container, img){
+    const image = document.createElement("img");
+    image.src = img;
+    container.innerHTML = '';
+    container.append(image);
+}
+function incrementSliderCounter(){
+    if(current < slidesCount - 1){
+        current++;
+    }else{
+        current = 0;
+    }
+}
+function decrementSliderCounter(){
+    if(current > 0){
+        current --;
+    }else{
+        current = slides.length - 1;
+    }
+}
+function updateSliderCounter(){
+    currentSlideText.innerText = current + 1;
 }
