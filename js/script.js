@@ -283,21 +283,26 @@ function showNotificationModal(message){
 
 }
 //slider
-let slidesCount = 0;
-let current = 0;
-let slides = [];
-const slidesCountText = document.querySelector('.offer__slider-counter #total');
-const currentSlideText = document.querySelector('.offer__slider-counter #current');
-const sliderContainer = document.querySelector('.offer__slide');
-axios.get('http://localhost:3000/slider')
-    .then(result => {
-        showSlide(sliderContainer, result.data[0].image);
-        slidesCount = result.data.length;
-        slidesCountText.innerText = slidesCount;
-        updateSliderCounter();
-        slides = result.data;
-    });
 
+let current = 0;
+let slides = document.querySelectorAll('.offer__slide');
+const slidesCount = slides.length;
+const slidesCountText = document.querySelector('.offer__slider-counter #total');
+const currentSlideText = document.querySelector('.offer__slider-counter #current'),
+    sliderInner = document.querySelector('.offer__slider-inner'),
+    sliderWrapper = document.querySelector('.offer__slider-wrapper'),
+    width = window.getComputedStyle(sliderWrapper, null).width;
+
+updateSliderCounter();
+slidesCountText.textContent = addZero(slidesCount);
+sliderInner.style.display = 'flex';
+sliderInner.style.transition = '0.5s';
+sliderInner.style.width = 100 * slidesCount + '%';
+sliderWrapper.style.overflow = 'hidden';
+
+slides.forEach(slide => {
+   slide.style.width = width;
+});
 const sliderButtons = document.querySelector('.offer__slider-counter');
 sliderButtons.addEventListener('click', (e)=>{
     if(e.target.classList.contains('offer__slider-next')){
@@ -305,14 +310,13 @@ sliderButtons.addEventListener('click', (e)=>{
     }else if(e.target.classList.contains('offer__slider-prev')){
         decrementSliderCounter();
     }
-    showSlide(sliderContainer, slides[current].image);
+
+    showSlide(current);
     updateSliderCounter();
 });
-function showSlide(container, img){
-    const image = document.createElement("img");
-    image.src = img;
-    container.innerHTML = '';
-    container.append(image);
+function showSlide(ind){
+    const offset = ind * +width.slice(0, width.length - 2)+ 'px';
+    sliderInner.style.transform = `translateX(-${offset})`;
 }
 function incrementSliderCounter(){
     if(current < slidesCount - 1){
@@ -329,5 +333,8 @@ function decrementSliderCounter(){
     }
 }
 function updateSliderCounter(){
-    currentSlideText.innerText = current + 1;
+    let currentText = current + 1;
+    currentText = addZero(current + 1);
+    currentSlideText.innerText = currentText;
 }
+
