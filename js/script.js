@@ -163,27 +163,6 @@ class Card{
     }
 }
 
-const cardsValues = [
-    {
-        image: 'img/tabs/vegy.jpg',
-        subTitle: 'Меню "Фитнес"',
-        description: 'Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
-        price: '229'
-    },
-    {
-        image: 'img/tabs/elite.jpg',
-        subTitle: 'Меню “Премиум”',
-        description: 'В меню “Премиум” мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!',
-        price: '550'
-    },
-    {
-        image: 'img/tabs/post.jpg',
-        subTitle: 'Меню "Постное"',
-        description: 'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки, правильное количество белков за счет тофу и импортных вегетарианских стейков.',
-        price: '430'
-    }
-];
-
 const getData = async (url) =>{
     const res = await fetch(url);
 
@@ -291,7 +270,8 @@ const slidesCountText = document.querySelector('.offer__slider-counter #total');
 const currentSlideText = document.querySelector('.offer__slider-counter #current'),
     sliderInner = document.querySelector('.offer__slider-inner'),
     sliderWrapper = document.querySelector('.offer__slider-wrapper'),
-    width = window.getComputedStyle(sliderWrapper, null).width;
+    width = window.getComputedStyle(sliderWrapper, null).width,
+    slider = document.querySelector('.offer__slider');
 
 updateSliderCounter();
 slidesCountText.textContent = addZero(slidesCount);
@@ -303,14 +283,17 @@ sliderWrapper.style.overflow = 'hidden';
 slides.forEach(slide => {
    slide.style.width = width;
 });
+
+
 const sliderButtons = document.querySelector('.offer__slider-counter');
 sliderButtons.addEventListener('click', (e)=>{
     if(e.target.classList.contains('offer__slider-next')){
+        console.log(e.target.getAttribute('data-dot'));
         incrementSliderCounter();
     }else if(e.target.classList.contains('offer__slider-prev')){
         decrementSliderCounter();
     }
-
+    setActiveDot(current);
     showSlide(current);
     updateSliderCounter();
 });
@@ -337,4 +320,38 @@ function updateSliderCounter(){
     currentText = addZero(current + 1);
     currentSlideText.innerText = currentText;
 }
+function createDot(ind, parent){
+    const span = document.createElement('span');
+    span.classList.add('dot');
+    span.setAttribute('data-dot', ind);
+    parent.append(span);
+}
 
+const dotContainer = document.createElement('div');
+dotContainer.classList.add('dot-container');
+slider.append(dotContainer);
+
+slides.forEach((slide, ind) =>{
+   createDot(ind, dotContainer);
+});
+
+dotContainer.addEventListener('click', (e)=>{
+    const ind = +e.target.getAttribute('data-dot');
+   showSlide(ind);
+   setActiveDot(ind);
+
+});
+
+function setActiveDot(ind){
+    const dots = document.querySelectorAll('.dot-container .dot');
+    dots.forEach(dot =>{
+        if(+dot.getAttribute('data-dot') !== ind){
+            dot.classList.remove('active');
+        }else{
+            dot.classList.add('active');
+        }
+    });
+}
+showSlide(current);
+setActiveDot(current);
+updateSliderCounter();

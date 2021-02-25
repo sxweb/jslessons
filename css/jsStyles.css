@@ -12,3 +12,28 @@
     from{opacity: 0.1;}
     to{opacity: 1;}
 }
+.offer__slider{
+    position: relative;
+}
+.dot-container{
+    position: absolute;
+    bottom:0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    padding:0 50px 10px 50px;
+}
+.dot-container .dot{
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+    border:1px solid #333;
+}
+.dot-container .active{
+    width: 15px;
+    height: 15px;
+}
