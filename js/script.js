@@ -299,6 +299,8 @@ sliderButtons.addEventListener('click', (e)=>{
 });
 function showSlide(ind){
     const offset = ind * +width.slice(0, width.length - 2)+ 'px';
+    const reg = /\w/ig;
+    console.log(width.replace(reg, ''));
     sliderInner.style.transform = `translateX(-${offset})`;
 }
 function incrementSliderCounter(){
