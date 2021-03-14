@@ -17,8 +17,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2caa2a37-b747-4029-9243-821af3d8e32a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/lessons/gettersSetters/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lessons/gettersSetters/script.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +33,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -158,7 +159,9 @@
       <workItem from="1615302397459" duration="12000" />
       <workItem from="1615302429100" duration="2893000" />
       <workItem from="1615386713540" duration="2507000" />
-      <workItem from="1615476029443" duration="1627000" />
+      <workItem from="1615476029443" duration="1807000" />
+      <workItem from="1615609238018" duration="2447000" />
+      <workItem from="1615698191673" duration="1832000" />
     </task>
     <servers />
   </component>
