@@ -1,3 +1,5 @@
+import {hideModal, showModal} from './modal';
+
 function forms(){
     //forms
 
@@ -80,4 +82,4 @@ function forms(){
     }
 }
 
-module.exports = forms;
+export default forms;

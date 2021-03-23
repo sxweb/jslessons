@@ -1,3 +1,16 @@
+function  showModal(){
+    modal.classList.add('show');
+    modal.classList.remove('hide');
+    document.body.style.overflow = 'hidden';
+    clearInterval(modalTimerId);
+}
+
+function hideModal(){
+    modal.classList.add('hide');
+    modal.classList.remove('show');
+    document.body.style.overflow = '';
+}
+
 function modal(){
 
 //modal
@@ -18,18 +31,7 @@ function modal(){
             showModal();
         });
     });
-    function  showModal(){
-        modal.classList.add('show');
-        modal.classList.remove('hide');
-        document.body.style.overflow = 'hidden';
-        clearInterval(modalTimerId);
-    }
-
-    function hideModal(){
-        modal.classList.add('hide');
-        modal.classList.remove('show');
-        document.body.style.overflow = '';
-    }
+    
 
     const modalTimerId = setTimeout(showModal, 50000);
 
@@ -44,4 +46,6 @@ function modal(){
 
 }
 
-module.exports = modal;
+export default modal;
+export {showModal};
+export {hideModal};
