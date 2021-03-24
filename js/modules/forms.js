@@ -59,7 +59,7 @@ function forms(){
     });
 
     function showNotificationModal(message){
-        hideModal();
+        hideModal('[data-modal]');
         const oldModal = document.querySelector('.modal__dialog');
         oldModal.classList.add('hide');
         const newModal = document.createElement('div');
@@ -72,11 +72,11 @@ function forms(){
         </div>
     `;
         document.querySelector('.modal').append(newModal);
-        showModal();
+        showModal('[data-modal]');
         setTimeout(()=>{
             newModal.remove();
             oldModal.classList.remove('hide');
-            hideModal();
+            hideModal('[data-modal]');
         }, 4000);
 
     }

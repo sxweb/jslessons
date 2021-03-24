@@ -267,7 +267,7 @@ function forms(){
     });
 
     function showNotificationModal(message){
-        (0,_modal__WEBPACK_IMPORTED_MODULE_0__.hideModal)();
+        (0,_modal__WEBPACK_IMPORTED_MODULE_0__.hideModal)('[data-modal]');
         const oldModal = document.querySelector('.modal__dialog');
         oldModal.classList.add('hide');
         const newModal = document.createElement('div');
@@ -280,11 +280,11 @@ function forms(){
         </div>
     `;
         document.querySelector('.modal').append(newModal);
-        (0,_modal__WEBPACK_IMPORTED_MODULE_0__.showModal)();
+        (0,_modal__WEBPACK_IMPORTED_MODULE_0__.showModal)('[data-modal]');
         setTimeout(()=>{
             newModal.remove();
             oldModal.classList.remove('hide');
-            (0,_modal__WEBPACK_IMPORTED_MODULE_0__.hideModal)();
+            (0,_modal__WEBPACK_IMPORTED_MODULE_0__.hideModal)('[data-modal]');
         }, 4000);
 
     }
@@ -306,48 +306,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "showModal": () => (/* binding */ showModal),
 /* harmony export */   "hideModal": () => (/* binding */ hideModal)
 /* harmony export */ });
-function  showModal(){
+function  showModal(modalSelector, modalTimerId){
+    const modal = document.querySelector(modalSelector);
     modal.classList.add('show');
     modal.classList.remove('hide');
     document.body.style.overflow = 'hidden';
-    clearInterval(modalTimerId);
+    if(modalTimerId){
+        clearInterval(modalTimerId);
+    }
+    
 }
 
-function hideModal(){
+function hideModal(modalSelector){
+    const modal = document.querySelector(modalSelector);
     modal.classList.add('hide');
     modal.classList.remove('show');
     document.body.style.overflow = '';
 }
 
-function modal(){
+function modal(modalSelector, modalTrigger, modalTimerId){
 
 //modal
 
-    const contactsButtons = document.querySelectorAll('[data-contacts]');
-    const modal = document.querySelector('[data-modal]');
+    const contactsButtons = document.querySelectorAll(modalTrigger);
+    const modal = document.querySelector(modalSelector);
 
 
 
     modal.addEventListener('click', (e)=>{
         if(e.target == modal || e.target.getAttribute('data-modalClose') == ''){
-            hideModal();
+            hideModal(modalSelector);
         }
     });
 
     contactsButtons.forEach((item)=>{
-        item.addEventListener('click', ()=>{
-            showModal();
-        });
+        item.addEventListener('click', ()=> showModal(modalSelector, modalTimerId));
     });
     
 
-    const modalTimerId = setTimeout(showModal, 50000);
+    
 
     window.addEventListener('scroll', showModalByScroll);
 
     function showModalByScroll(){
         if(window.pageYOffset +document.documentElement.clientHeight >=  document.documentElement.scrollHeight){
-            showModal();
+            showModal(modalSelector);
             window.removeEventListener('scroll', showModalByScroll);
         }
     }
@@ -678,11 +681,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 window.addEventListener('DOMContentLoaded', ()=>{
 
-
+    const modalTimerId = setTimeout(()=>(0,_modules_modal__WEBPACK_IMPORTED_MODULE_1__.default)('[data-modal]', modalTimerId), 50000);
     (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_0__.default)();
-    (0,_modules_modal__WEBPACK_IMPORTED_MODULE_1__.default)();
+    (0,_modules_modal__WEBPACK_IMPORTED_MODULE_1__.default)('[data-modal]', '[data-contacts]', modalTimerId);
     (0,_modules_calc__WEBPACK_IMPORTED_MODULE_2__.default)();
     (0,_modules_cards__WEBPACK_IMPORTED_MODULE_3__.default)();
     (0,_modules_forms__WEBPACK_IMPORTED_MODULE_4__.default)();
