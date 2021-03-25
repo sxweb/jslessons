@@ -134,6 +134,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/services */ "./js/services/services.js");
+
+
 function cards(){
 
 //cards using classes
@@ -170,15 +173,7 @@ function cards(){
         }
     }
 
-    const getData = async (url) =>{
-        const res = await fetch(url);
-
-        if(!res.ok){
-            throw new Error(`Could not fetch ${url}, status: ${res.status}`);
-        }
-
-        return await res.json();
-    };
+    
 
     axios.get('http://localhost:3000/menu')
         .then(result =>{
@@ -206,12 +201,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./modal */ "./js/modules/modal.js");
+/* harmony import */ var _services_services__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/services */ "./js/services/services.js");
 
 
-function forms(){
+function forms(formSelector, modalTimerId){
     //forms
 
-    const forms = document.querySelectorAll('form');
+    const forms = document.querySelectorAll(formSelector);
     const status = {
         loading: 'img/forms/spinner.svg',
         sent: 'You sent a letter',
@@ -220,17 +216,7 @@ function forms(){
 
 
 
-    const  postData = async (url, data)=>{
-        const result = await fetch(url, {
-            method: 'POST',
-            headers:{
-                'Content-type': 'application/json'
-            },
-            body: data
-        });
-
-        return await result.json();
-    };
+    
 
     function bindPostData(form){
         form.addEventListener('submit', (e)=>{
@@ -248,7 +234,7 @@ function forms(){
             data.forEach((value, key)=>{
                 obj[key] = value;
             });
-            postData(' http://localhost:3000/requests', JSON.stringify(obj))
+            (0,_services_services__WEBPACK_IMPORTED_MODULE_1__.postData)(' http://localhost:3000/requests', JSON.stringify(obj))
 
                 .then((data)=>{
                     showNotificationModal(status.sent);
@@ -280,7 +266,7 @@ function forms(){
         </div>
     `;
         document.querySelector('.modal').append(newModal);
-        (0,_modal__WEBPACK_IMPORTED_MODULE_0__.showModal)('[data-modal]');
+        (0,_modal__WEBPACK_IMPORTED_MODULE_0__.showModal)('[data-modal]', modalTimerId);
         setTimeout(()=>{
             newModal.remove();
             oldModal.classList.remove('hide');
@@ -350,7 +336,7 @@ function modal(modalSelector, modalTrigger, modalTimerId){
 
     function showModalByScroll(){
         if(window.pageYOffset +document.documentElement.clientHeight >=  document.documentElement.scrollHeight){
-            showModal(modalSelector);
+            showModal(modalSelector, modalTimerId);
             window.removeEventListener('scroll', showModalByScroll);
         }
     }
@@ -373,6 +359,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _timer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./timer */ "./js/modules/timer.js");
+
+
 function slider(){
 
 //slider
@@ -388,7 +377,7 @@ function slider(){
         slider = document.querySelector('.offer__slider');
 
     updateSliderCounter();
-    slidesCountText.textContent = addZero(slidesCount);
+    slidesCountText.textContent = (0,_timer__WEBPACK_IMPORTED_MODULE_0__.addZero)(slidesCount);
     sliderInner.style.display = 'flex';
     sliderInner.style.transition = '0.5s';
     sliderInner.style.width = 100 * slidesCount + '%';
@@ -433,7 +422,7 @@ function slider(){
     }
     function updateSliderCounter(){
         let currentText = current + 1;
-        currentText = addZero(current + 1);
+        currentText = (0,_timer__WEBPACK_IMPORTED_MODULE_0__.addZero)(current + 1);
         currentSlideText.innerText = currentText;
     }
     function createDot(ind, parent){
@@ -537,8 +526,16 @@ function tabs(){
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "addZero": () => (/* binding */ addZero)
 /* harmony export */ });
+function addZero(target){
+    if(target < 10){
+        target = `0${target}`;
+    }
+    return target;
+}
+
 function timer(){
 
 //timer
@@ -557,12 +554,6 @@ function timer(){
         return Date.parse(deadLine) - Date.parse(new Date());
     }
 
-    function addZero(target){
-        if(target < 10){
-            target = `0${target}`;
-        }
-        return target;
-    }
 
     function calculateTimerValues(miliseconds){
         const days = addZero(Math.floor(miliseconds / (1000*60*60*24))) ;
@@ -598,6 +589,45 @@ function timer(){
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (timer);
+
+
+/***/ }),
+
+/***/ "./js/services/services.js":
+/*!*********************************!*\
+  !*** ./js/services/services.js ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "postData": () => (/* binding */ postData),
+/* harmony export */   "getData": () => (/* binding */ getData)
+/* harmony export */ });
+const  postData = async (url, data)=>{
+    const result = await fetch(url, {
+        method: 'POST',
+        headers:{
+            'Content-type': 'application/json'
+        },
+        body: data
+    });
+
+    return await result.json();
+};
+
+const getData = async (url) =>{
+    const res = await fetch(url);
+
+    if(!res.ok){
+        throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+    }
+
+    return await res.json();
+};
+
+
+
 
 /***/ })
 
@@ -689,7 +719,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     (0,_modules_modal__WEBPACK_IMPORTED_MODULE_1__.default)('[data-modal]', '[data-contacts]', modalTimerId);
     (0,_modules_calc__WEBPACK_IMPORTED_MODULE_2__.default)();
     (0,_modules_cards__WEBPACK_IMPORTED_MODULE_3__.default)();
-    (0,_modules_forms__WEBPACK_IMPORTED_MODULE_4__.default)();
+    (0,_modules_forms__WEBPACK_IMPORTED_MODULE_4__.default)('form', modalTimerId);
     (0,_modules_timer__WEBPACK_IMPORTED_MODULE_5__.default)();
     (0,_modules_slider__WEBPACK_IMPORTED_MODULE_6__.default)();
 });

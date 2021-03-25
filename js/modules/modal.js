@@ -42,7 +42,7 @@ function modal(modalSelector, modalTrigger, modalTimerId){
 
     function showModalByScroll(){
         if(window.pageYOffset +document.documentElement.clientHeight >=  document.documentElement.scrollHeight){
-            showModal(modalSelector);
+            showModal(modalSelector, modalTimerId);
             window.removeEventListener('scroll', showModalByScroll);
         }
     }

@@ -1,9 +1,9 @@
 import {hideModal, showModal} from './modal';
-
-function forms(){
+import {postData} from '../services/services';
+function forms(formSelector, modalTimerId){
     //forms
 
-    const forms = document.querySelectorAll('form');
+    const forms = document.querySelectorAll(formSelector);
     const status = {
         loading: 'img/forms/spinner.svg',
         sent: 'You sent a letter',
@@ -12,17 +12,7 @@ function forms(){
 
 
 
-    const  postData = async (url, data)=>{
-        const result = await fetch(url, {
-            method: 'POST',
-            headers:{
-                'Content-type': 'application/json'
-            },
-            body: data
-        });
-
-        return await result.json();
-    };
+    
 
     function bindPostData(form){
         form.addEventListener('submit', (e)=>{
@@ -72,7 +62,7 @@ function forms(){
         </div>
     `;
         document.querySelector('.modal').append(newModal);
-        showModal('[data-modal]');
+        showModal('[data-modal]', modalTimerId);
         setTimeout(()=>{
             newModal.remove();
             oldModal.classList.remove('hide');

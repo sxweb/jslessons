@@ -1,3 +1,10 @@
+function addZero(target){
+    if(target < 10){
+        target = `0${target}`;
+    }
+    return target;
+}
+
 function timer(){
 
 //timer
@@ -16,12 +23,6 @@ function timer(){
         return Date.parse(deadLine) - Date.parse(new Date());
     }
 
-    function addZero(target){
-        if(target < 10){
-            target = `0${target}`;
-        }
-        return target;
-    }
 
     function calculateTimerValues(miliseconds){
         const days = addZero(Math.floor(miliseconds / (1000*60*60*24))) ;
@@ -57,3 +58,4 @@ function timer(){
 }
 
 export default timer;
+export {addZero};

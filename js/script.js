@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     modal('[data-modal]', '[data-contacts]', modalTimerId);
     calc();
     cards();
-    forms();
+    forms('form', modalTimerId);
     timer();
     slider();
 });

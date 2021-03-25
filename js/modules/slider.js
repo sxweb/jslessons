@@ -1,3 +1,5 @@
+import {addZero} from './timer';
+
 function slider(){
 
 //slider
