@@ -5,22 +5,17 @@ function addZero(target){
     return target;
 }
 
-function timer(){
-
-//timer
-    const deadLine = '2021-07-01T10:18:22';
-    console.log(new Date());
-
+function timer(deadline, daysId, hoursId, minutesId, secondsId){
 
     function displayTimer(days, hours, minutes, seconds){
-        document.querySelector('#days').innerHTML = days;
-        document.querySelector('#hours').innerHTML = hours;
-        document.querySelector('#minutes').innerHTML = minutes;
-        document.querySelector('#seconds').innerHTML = seconds;
+        document.querySelector(daysId).innerHTML = days;
+        document.querySelector(hoursId).innerHTML = hours;
+        document.querySelector(minutesId).innerHTML = minutes;
+        document.querySelector(secondsId).innerHTML = seconds;
     }
 
     function getRemainingTime(deadline){
-        return Date.parse(deadLine) - Date.parse(new Date());
+        return Date.parse(deadline) - Date.parse(new Date());
     }
 
 
@@ -39,16 +34,16 @@ function timer(){
 
     function startTimer(){
         const intervalId = setInterval(()=>{
-            if(getRemainingTime(deadLine) >= 0){
-                const values = calculateTimerValues(getRemainingTime(deadLine));
+            if(getRemainingTime(deadline) >= 0){
+                const values = calculateTimerValues(getRemainingTime(deadline));
                 displayTimer(values.days, values.hours, values.minutes, values.seconds);
             }else{
                 clearInterval(intervalId);
             }
         },1000);
     }
-    if(getRemainingTime(deadLine) > 0){
-        const values = calculateTimerValues(getRemainingTime(deadLine));
+    if(getRemainingTime(deadline) > 0){
+        const values = calculateTimerValues(getRemainingTime(deadline));
         displayTimer(values.days, values.hours, values.minutes, values.seconds);
         startTimer();
     }else{

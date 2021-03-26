@@ -362,19 +362,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _timer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./timer */ "./js/modules/timer.js");
 
 
-function slider(){
+function slider(slide, countText, currentText, field, wrapper, sliderCont, nextArrow, prevArrow, activeDotClass){
 
 //slider
 
     let current = 0;
-    let slides = document.querySelectorAll('.offer__slide');
+    let slides = document.querySelectorAll(slide);
     const slidesCount = slides.length;
-    const slidesCountText = document.querySelector('.offer__slider-counter #total');
-    const currentSlideText = document.querySelector('.offer__slider-counter #current'),
-        sliderInner = document.querySelector('.offer__slider-inner'),
-        sliderWrapper = document.querySelector('.offer__slider-wrapper'),
+    const slidesCountText = document.querySelector(countText);
+    const currentSlideText = document.querySelector(currentText),
+        sliderInner = document.querySelector(field),
+        sliderWrapper = document.querySelector(wrapper),
         width = window.getComputedStyle(sliderWrapper, null).width,
-        slider = document.querySelector('.offer__slider');
+        slider = document.querySelector(sliderCont);
 
     updateSliderCounter();
     slidesCountText.textContent = (0,_timer__WEBPACK_IMPORTED_MODULE_0__.addZero)(slidesCount);
@@ -390,10 +390,10 @@ function slider(){
 
     const sliderButtons = document.querySelector('.offer__slider-counter');
     sliderButtons.addEventListener('click', (e)=>{
-        if(e.target.classList.contains('offer__slider-next')){
+        if(e.target.classList.contains(nextArrow)){
             console.log(e.target.getAttribute('data-dot'));
             incrementSliderCounter();
-        }else if(e.target.classList.contains('offer__slider-prev')){
+        }else if(e.target.classList.contains(prevArrow)){
             decrementSliderCounter();
         }
         setActiveDot(current);
@@ -451,9 +451,9 @@ function slider(){
         const dots = document.querySelectorAll('.dot-container .dot');
         dots.forEach(dot =>{
             if(+dot.getAttribute('data-dot') !== ind){
-                dot.classList.remove('active');
+                dot.classList.remove(activeDotClass);
             }else{
-                dot.classList.add('active');
+                dot.classList.add(activeDotClass);
             }
         });
     }
@@ -477,12 +477,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-function tabs(){
+function tabs(tavsContent, tabItem, tabActiveClass){
 
 //Tabs
-    const tabsContent = document.querySelectorAll('.tabcontainer .tabcontent');
-    const tabsLinks = document.querySelectorAll('.tabheader__items .tabheader__item');
-    const linksContainer = document.querySelector('.tabheader__items');
+    const tabsContent = document.querySelectorAll(tavsContent);
+    const tabsLinks = document.querySelectorAll(tabItem);
 
     function hideTabs(tabs){
         tabs.forEach((item) => {
@@ -497,15 +496,15 @@ function tabs(){
     }
 
     document.addEventListener('click', (e) =>{
-        if(e.target && e.target.classList.contains('tabheader__item')){
+        if(e.target && e.target.classList.contains(tabItem.slice(1))){
             tabsLinks.forEach((item, i) =>{
-                item.classList.remove('tabheader__item_active');
+                item.classList.remove(tabActiveClass.slice(1));
                 if(e.target == item){
                     hideTabs(tabsContent);
                     showTab(i);
                 }
             });
-            e.target.classList.add('tabheader__item_active');
+            e.target.classList.add(tabActiveClass.slice(1));
         }
     });
 
@@ -536,22 +535,17 @@ function addZero(target){
     return target;
 }
 
-function timer(){
-
-//timer
-    const deadLine = '2021-07-01T10:18:22';
-    console.log(new Date());
-
+function timer(deadline, daysId, hoursId, minutesId, secondsId){
 
     function displayTimer(days, hours, minutes, seconds){
-        document.querySelector('#days').innerHTML = days;
-        document.querySelector('#hours').innerHTML = hours;
-        document.querySelector('#minutes').innerHTML = minutes;
-        document.querySelector('#seconds').innerHTML = seconds;
+        document.querySelector(daysId).innerHTML = days;
+        document.querySelector(hoursId).innerHTML = hours;
+        document.querySelector(minutesId).innerHTML = minutes;
+        document.querySelector(secondsId).innerHTML = seconds;
     }
 
     function getRemainingTime(deadline){
-        return Date.parse(deadLine) - Date.parse(new Date());
+        return Date.parse(deadline) - Date.parse(new Date());
     }
 
 
@@ -570,16 +564,16 @@ function timer(){
 
     function startTimer(){
         const intervalId = setInterval(()=>{
-            if(getRemainingTime(deadLine) >= 0){
-                const values = calculateTimerValues(getRemainingTime(deadLine));
+            if(getRemainingTime(deadline) >= 0){
+                const values = calculateTimerValues(getRemainingTime(deadline));
                 displayTimer(values.days, values.hours, values.minutes, values.seconds);
             }else{
                 clearInterval(intervalId);
             }
         },1000);
     }
-    if(getRemainingTime(deadLine) > 0){
-        const values = calculateTimerValues(getRemainingTime(deadLine));
+    if(getRemainingTime(deadline) > 0){
+        const values = calculateTimerValues(getRemainingTime(deadline));
         displayTimer(values.days, values.hours, values.minutes, values.seconds);
         startTimer();
     }else{
@@ -715,13 +709,23 @@ __webpack_require__.r(__webpack_exports__);
 window.addEventListener('DOMContentLoaded', ()=>{
 
     const modalTimerId = setTimeout(()=>(0,_modules_modal__WEBPACK_IMPORTED_MODULE_1__.default)('[data-modal]', modalTimerId), 50000);
-    (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_0__.default)();
+    (0,_modules_tabs__WEBPACK_IMPORTED_MODULE_0__.default)('.tabcontent', '.tabheader__item', '.tabheader__item_active');
     (0,_modules_modal__WEBPACK_IMPORTED_MODULE_1__.default)('[data-modal]', '[data-contacts]', modalTimerId);
     (0,_modules_calc__WEBPACK_IMPORTED_MODULE_2__.default)();
     (0,_modules_cards__WEBPACK_IMPORTED_MODULE_3__.default)();
     (0,_modules_forms__WEBPACK_IMPORTED_MODULE_4__.default)('form', modalTimerId);
-    (0,_modules_timer__WEBPACK_IMPORTED_MODULE_5__.default)();
-    (0,_modules_slider__WEBPACK_IMPORTED_MODULE_6__.default)();
+    (0,_modules_timer__WEBPACK_IMPORTED_MODULE_5__.default)('2021-07-01T10:18:22', '#days', '#hours', '#minutes', '#seconds');
+    (0,_modules_slider__WEBPACK_IMPORTED_MODULE_6__.default)({
+        slide: '.offer__slide',
+        countText: '.offer__slider-counter #total',
+        currentText: '.offer__slider-counter #current',
+        field: '.offer__slider-inner',
+        wrapper: '.offer__slider-wrapper',
+        sliderCont: '.offer__slider',
+        nextArrow: 'offer__slider-next',
+        prevArrow: 'offer__slider-prev',
+        acticeDotClass: 'active'
+    });
 });
 
 })();

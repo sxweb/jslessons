@@ -1,9 +1,8 @@
-function tabs(){
+function tabs(tavsContent, tabItem, tabActiveClass){
 
 //Tabs
-    const tabsContent = document.querySelectorAll('.tabcontainer .tabcontent');
-    const tabsLinks = document.querySelectorAll('.tabheader__items .tabheader__item');
-    const linksContainer = document.querySelector('.tabheader__items');
+    const tabsContent = document.querySelectorAll(tavsContent);
+    const tabsLinks = document.querySelectorAll(tabItem);
 
     function hideTabs(tabs){
         tabs.forEach((item) => {
@@ -18,15 +17,15 @@ function tabs(){
     }
 
     document.addEventListener('click', (e) =>{
-        if(e.target && e.target.classList.contains('tabheader__item')){
+        if(e.target && e.target.classList.contains(tabItem.slice(1))){
             tabsLinks.forEach((item, i) =>{
-                item.classList.remove('tabheader__item_active');
+                item.classList.remove(tabActiveClass.slice(1));
                 if(e.target == item){
                     hideTabs(tabsContent);
                     showTab(i);
                 }
             });
-            e.target.classList.add('tabheader__item_active');
+            e.target.classList.add(tabActiveClass.slice(1));
         }
     });
 

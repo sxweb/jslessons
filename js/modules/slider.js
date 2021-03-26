@@ -1,18 +1,18 @@
 import {addZero} from './timer';
 
-function slider(){
+function slider(slide, countText, currentText, field, wrapper, sliderCont, nextArrow, prevArrow, activeDotClass){
 
 //slider
 
     let current = 0;
-    let slides = document.querySelectorAll('.offer__slide');
+    let slides = document.querySelectorAll(slide);
     const slidesCount = slides.length;
-    const slidesCountText = document.querySelector('.offer__slider-counter #total');
-    const currentSlideText = document.querySelector('.offer__slider-counter #current'),
-        sliderInner = document.querySelector('.offer__slider-inner'),
-        sliderWrapper = document.querySelector('.offer__slider-wrapper'),
+    const slidesCountText = document.querySelector(countText);
+    const currentSlideText = document.querySelector(currentText),
+        sliderInner = document.querySelector(field),
+        sliderWrapper = document.querySelector(wrapper),
         width = window.getComputedStyle(sliderWrapper, null).width,
-        slider = document.querySelector('.offer__slider');
+        slider = document.querySelector(sliderCont);
 
     updateSliderCounter();
     slidesCountText.textContent = addZero(slidesCount);
@@ -28,10 +28,10 @@ function slider(){
 
     const sliderButtons = document.querySelector('.offer__slider-counter');
     sliderButtons.addEventListener('click', (e)=>{
-        if(e.target.classList.contains('offer__slider-next')){
+        if(e.target.classList.contains(nextArrow)){
             console.log(e.target.getAttribute('data-dot'));
             incrementSliderCounter();
-        }else if(e.target.classList.contains('offer__slider-prev')){
+        }else if(e.target.classList.contains(prevArrow)){
             decrementSliderCounter();
         }
         setActiveDot(current);
@@ -89,9 +89,9 @@ function slider(){
         const dots = document.querySelectorAll('.dot-container .dot');
         dots.forEach(dot =>{
             if(+dot.getAttribute('data-dot') !== ind){
-                dot.classList.remove('active');
+                dot.classList.remove(activeDotClass);
             }else{
-                dot.classList.add('active');
+                dot.classList.add(activeDotClass);
             }
         });
     }
