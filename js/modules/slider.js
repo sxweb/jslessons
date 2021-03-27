@@ -1,6 +1,6 @@
 import {addZero} from './timer';
 
-function slider(slide, countText, currentText, field, wrapper, sliderCont, nextArrow, prevArrow, activeDotClass){
+function slider({slide, countText, currentText, field, wrapper, sliderCont, nextArrow, prevArrow, arrowCont, activeDotClass}){
 
 //slider
 
@@ -26,7 +26,7 @@ function slider(slide, countText, currentText, field, wrapper, sliderCont, nextA
     });
 
 
-    const sliderButtons = document.querySelector('.offer__slider-counter');
+    const sliderButtons = document.querySelector(arrowCont);
     sliderButtons.addEventListener('click', (e)=>{
         if(e.target.classList.contains(nextArrow)){
             console.log(e.target.getAttribute('data-dot'));
@@ -82,6 +82,8 @@ function slider(slide, countText, currentText, field, wrapper, sliderCont, nextA
         const ind = +e.target.getAttribute('data-dot');
         showSlide(ind);
         setActiveDot(ind);
+        current = ind;
+        updateSliderCounter();
 
     });
 

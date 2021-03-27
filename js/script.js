@@ -27,6 +27,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
         sliderCont: '.offer__slider',
         nextArrow: 'offer__slider-next',
         prevArrow: 'offer__slider-prev',
-        acticeDotClass: 'active'
+        activeDotClass: 'active',
+        arrowCont: '.offer__slider-counter'
     });
 });

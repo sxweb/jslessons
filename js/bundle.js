@@ -362,7 +362,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _timer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./timer */ "./js/modules/timer.js");
 
 
-function slider(slide, countText, currentText, field, wrapper, sliderCont, nextArrow, prevArrow, activeDotClass){
+function slider({slide, countText, currentText, field, wrapper, sliderCont, nextArrow, prevArrow, arrowCont, activeDotClass}){
 
 //slider
 
@@ -388,7 +388,7 @@ function slider(slide, countText, currentText, field, wrapper, sliderCont, nextA
     });
 
 
-    const sliderButtons = document.querySelector('.offer__slider-counter');
+    const sliderButtons = document.querySelector(arrowCont);
     sliderButtons.addEventListener('click', (e)=>{
         if(e.target.classList.contains(nextArrow)){
             console.log(e.target.getAttribute('data-dot'));
@@ -444,6 +444,8 @@ function slider(slide, countText, currentText, field, wrapper, sliderCont, nextA
         const ind = +e.target.getAttribute('data-dot');
         showSlide(ind);
         setActiveDot(ind);
+        current = ind;
+        updateSliderCounter();
 
     });
 
@@ -724,7 +726,8 @@ window.addEventListener('DOMContentLoaded', ()=>{
         sliderCont: '.offer__slider',
         nextArrow: 'offer__slider-next',
         prevArrow: 'offer__slider-prev',
-        acticeDotClass: 'active'
+        activeDotClass: 'active',
+        arrowCont: '.offer__slider-counter'
     });
 });
 
