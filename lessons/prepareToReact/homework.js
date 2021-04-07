@@ -23,7 +23,6 @@ const sponsors = {
 const money = sponsors.cash.reduce((sum, value) =>{
     return sum + value;
 });
-console.log(money);
 
 
 
